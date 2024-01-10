@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevFreela.Core.Entities
+﻿namespace DevFreela.Core.Entities
 {
-    public class UserSkill: BaseEntity
+    public class UserSkill : BaseEntity
     {
         public UserSkill(int idUser, int idSkill)
         {
@@ -14,7 +8,7 @@ namespace DevFreela.Core.Entities
             IdSkill = idSkill;
         }
 
-        public int IdUser { get; private set; }         
+        public int IdUser { get; private set; }
         public int IdSkill { get; private set; }
     }
 }
