@@ -16,7 +16,7 @@ namespace DevFreela.Infrastructure.Persistence
             {
                 new User("Adriana Pereira", "adriana@gmail.com", new DateTime(1982, 10, 27)),
                 new User("Rodrigo Mora", "rodrigo@gmail.com", new DateTime(1979, 08, 08)),
-                new User("Amanda Alejandra", "amanda@gmail.com", new DateTime(2020, 02, 24))
+                new User("Amanda Alejandra", "amanda@gmail.com", new DateTime(2002, 02, 24))
             };
             Skills = new List<Skill>
             {
@@ -29,5 +29,6 @@ namespace DevFreela.Infrastructure.Persistence
         public List<Project> Projects { get; set; }
         public List<User> Users { get; set; }
         public List<Skill> Skills { get; set; }
+        public List<ProjectComment> ProjectComments { get; set; }
     }
 }
