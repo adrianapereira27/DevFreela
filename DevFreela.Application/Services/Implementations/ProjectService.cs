@@ -33,14 +33,20 @@ namespace DevFreela.Application.Services.Implementations
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
-            project.Cancel();
+            if (project != null)
+            {
+                project.Cancel();
+            }
         }
 
         public void Finish(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
-            project.Finish();
+            if (project != null)
+            {
+                project.Finish();
+            }
         }
 
         public List<ProjectViewModel> GetAll(string query)
@@ -74,15 +80,20 @@ namespace DevFreela.Application.Services.Implementations
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
-            project.Start();
+            if (project != null)
+            {
+                project.Start();
+            }
         }
 
         public void Update(UpdateProjectInputModel updateModel)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == updateModel.Id);
 
-            project.Update(updateModel.Title, updateModel.Description, updateModel.TotalCoast);
-
+            if (project != null)
+            {
+                project.Update(updateModel.Title, updateModel.Description, updateModel.TotalCoast);
+            }
         }
     }
 }

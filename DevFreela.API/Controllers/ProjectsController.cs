@@ -1,5 +1,4 @@
-﻿using DevFreela.API.Models;
-using DevFreela.Application.InputModels;
+﻿using DevFreela.Application.InputModels;
 using DevFreela.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,7 +43,7 @@ namespace DevFreela.API.Controllers
                 return BadRequest();
             }
             var id = _projectService.Create(createProject);
-            
+
             return CreatedAtAction(nameof(GetById), new { id = id }, createProject);
         }
 

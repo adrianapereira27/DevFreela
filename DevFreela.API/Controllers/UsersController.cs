@@ -1,4 +1,5 @@
-﻿using DevFreela.API.Models;
+﻿using DevFreela.Application.InputModels;
+using DevFreela.API.Models;
 using DevFreela.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,27 +18,29 @@ namespace DevFreela.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var user = _userService.GetUserById(id);
+            var user = _userService.GetById(id);
             if (user == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(user);                       
         }
 
         // api/users
         [HttpPost]
-        public IActionResult Post([FromBody] CreateUserModel createUserModel)
+        public IActionResult Post([FromBody] NewUserInputModel newUserInputModel)
         {
-            var id = _userService.Create(createUserModel);
+            var id = _userService.Create(newUserInputModel);
 
-            return CreatedAtAction(nameof(GetById), new { id = id }, createUserModel);
+            return CreatedAtAction(nameof(GetById), new { id = id }, newUserInputModel);
         }
 
         // api/users/1/login
         [HttpPut("{id}/login")]
         public IActionResult Login(int id, [FromBody] LoginModel login)
         {
+            // TODO: Paramódulo de autenticação e autorização
+
             return NoContent();
         }
     }
