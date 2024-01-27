@@ -39,7 +39,7 @@ namespace DevFreela.API.Controllers
         [HttpPut("{id}/login")]
         public IActionResult Login(int id, [FromBody] LoginModel login)
         {
-            // TODO: Paramódulo de autenticação e autorização
+            // TODO: Para módulo de autenticação e autorização
 
             return NoContent();
         }
