@@ -19,7 +19,8 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext = dbContext;
             _connectionString = configuration.GetConnectionString("DevFreelaCs"); // usado no Dapper
         }
-        public int Create(NewProjectInputModel inputModel)
+        // comentado, porque será usado no padrão CQRS (MediatR)
+        /*public int Create(NewProjectInputModel inputModel)
         {
             var project = new Project(inputModel.Title, inputModel.Description, inputModel.idCliente, inputModel.idFreelancer, inputModel.TotalCoast);
             
@@ -27,18 +28,19 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext.SaveChanges();
 
             return project.Id;
-        }
+        }*/
 
-        public void CreateComment(CreateCommentInputModel inputModel)
+        // comentado, porque será usado no padrão CQRS (MediatR)
+        /*public void CreateComment(CreateCommentInputModel inputModel)
         {
             var comment = new ProjectComment(inputModel.Content, inputModel.IdProject, inputModel.IdUser);
 
             _dbContext.ProjectComments.Add(comment);
 
             _dbContext.SaveChanges();
-        }
+        }*/
 
-        public void Delete(int id)
+        /*public void Delete(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
@@ -47,9 +49,9 @@ namespace DevFreela.Application.Services.Implementations
                 project.Cancel();
                 _dbContext.SaveChanges();
             }
-        }
+        }*/
 
-        public void Finish(int id)
+        /*public void Finish(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
@@ -58,9 +60,10 @@ namespace DevFreela.Application.Services.Implementations
                 project.Finish();
                 _dbContext.SaveChanges();
             }
-        }
+        }*/
 
-        public List<ProjectViewModel> GetAll(string query)
+        // comentado, porque será usado no padrão CQRS (MediatR)
+        /*public List<ProjectViewModel> GetAll(string query)
         {
             var projects = _dbContext.Projects;
 
@@ -68,9 +71,10 @@ namespace DevFreela.Application.Services.Implementations
                 .ToList();
 
             return projectsViewModel;
-        }
+        }*/
 
-        public ProjectDetailsViewModel GetById(int id)
+        //comentado, porque será usado no padrão CQRS(MediatR)
+        /*public ProjectDetailsViewModel GetById(int id)
         {            
             var project = _dbContext.Projects
                 .Include(p => p.Client)     // inclui o User Client da classe Project.cs (retorna a informação na consulta)
@@ -90,9 +94,9 @@ namespace DevFreela.Application.Services.Implementations
                 project.Freelancer.FullName
                 );
             return projectDetailsViewModel;
-        }
+        }*/
 
-        public void Start(int id)
+        /*public void Start(int id)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == id);
 
@@ -111,9 +115,9 @@ namespace DevFreela.Application.Services.Implementations
                 sqlConnection.Execute(script, new { status = project.Status, startedAt = project.StartedAt, id });
             
             }
-        }
+        }*/
 
-        public void Update(UpdateProjectInputModel updateModel)
+        /*public void Update(UpdateProjectInputModel updateModel)
         {
             var project = _dbContext.Projects.SingleOrDefault(p => p.Id == updateModel.Id);
 
@@ -122,6 +126,6 @@ namespace DevFreela.Application.Services.Implementations
                 project.Update(updateModel.Title, updateModel.Description, updateModel.TotalCoast);
                 _dbContext.SaveChanges();
             }
-        }
+        }*/
     }
 }

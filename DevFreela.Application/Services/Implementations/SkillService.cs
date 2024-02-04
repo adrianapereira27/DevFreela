@@ -18,7 +18,8 @@ namespace DevFreela.Application.Services.Implementations
             _connectionString = configuration.GetConnectionString("DevFreelaCs");  // usado para o Dapper
         }
 
-        public List<SkillViewModel> GetAll()
+        // usado no MediatR (GetAllSkills)
+        /*public List<SkillViewModel> GetAll()
         {
             // Dapper
             using (var sqlConnection = new SqlConnection(_connectionString))
@@ -31,12 +32,12 @@ namespace DevFreela.Application.Services.Implementations
             }
 
             // EntityFrameworkCore
-            /*var skills = _dbContext.Skills;
+            var skills = _dbContext.Skills;
 
             var skillsViewModel = skills.Select(s => new SkillViewModel(s.Id, s.Description)).ToList();
 
-            return skillsViewModel;*/
+            return skillsViewModel;
                 
-        }
+        }*/
     }
 }

@@ -1,7 +1,5 @@
-﻿using DevFreela.Application.InputModels;
-using DevFreela.Application.Services.Interfaces;
+﻿using DevFreela.Application.Services.Interfaces;
 using DevFreela.Application.ViewModels;
-using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistence;
 
 namespace DevFreela.Application.Services.Implementations
@@ -15,7 +13,8 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext = dbContext;
         }
 
-        public int Create(NewUserInputModel inputModel)
+        // comentado, porque será usado no MediatR
+        /*public int Create(NewUserInputModel inputModel)
         {
             var user = new User(inputModel.FullName, inputModel.Email, inputModel.BirthDate);
 
@@ -23,9 +22,9 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext.SaveChanges();
 
             return user.Id;
-        }
+        }*/
 
-        public UserDetailsViewModel GetById(int id)
+        /*public UserDetailsViewModel GetById(int id)
         {
             var user = _dbContext.Users.SingleOrDefault(p => p.Id == id);
 
@@ -35,7 +34,7 @@ namespace DevFreela.Application.Services.Implementations
             }
 
             return new UserDetailsViewModel(user.FullName, user.Email);
-        }
-               
+        }*/
+
     }
 }
