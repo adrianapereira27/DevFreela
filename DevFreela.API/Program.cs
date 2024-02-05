@@ -2,7 +2,9 @@ using DevFreela.API.Models;
 using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.Services.Implementations;
 using DevFreela.Application.Services.Interfaces;
+using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
+using DevFreela.Infrastructure.Persistence.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,13 +25,17 @@ var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 //builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseInMemoryDatabase(connectionString)); // cria um banco de dados em memória (com EntityFrameWorkCore), usado para situações que o banco de dados ainda não foi criado ou não foi realizada a migration
 
-builder.Services.AddScoped<IProjectService, ProjectService>();    // usado no padrão de arquitetura limpa (substituído pelo CQRS)
-builder.Services.AddScoped<IUserService, UserService>();          // usado no padrão de arquitetura limpa (substituído pelo CQRS)
-builder.Services.AddScoped<ISkillService, SkillService>();        // usado no padrão de arquitetura limpa (substituído pelo CQRS)
+//builder.Services.AddScoped<IProjectService, ProjectService>();    // usado no padrão de arquitetura limpa (substituído pelo padrão repository)
+//builder.Services.AddScoped<IUserService, UserService>();          // usado no padrão de arquitetura limpa (substituído pelo padrão repository)
+//builder.Services.AddScoped<ISkillService, SkillService>();        // usado no padrão de arquitetura limpa (substituído pelo padrão repository)
+
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();   // padrão repository
+builder.Services.AddScoped<ISkillRepository, SkillRepository>();       // padrão repository
+builder.Services.AddScoped<IUserRepository, UserRepository>();         // padrão repository
 
 builder.Services.AddControllers();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));   // usado no padrão CQRS (MediatR)
+//builder.Services.AddMediatR(typeof(CreateProjectCommand));   // usado no padrão CQRS (MediatR)
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
