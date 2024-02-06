@@ -1,11 +1,9 @@
-﻿using DevFreela.Application.InputModels;
-using DevFreela.API.Models;
-using DevFreela.Application.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using DevFreela.API.Models;
 using DevFreela.Application.Commands.CreateUser;
 using DevFreela.Application.Queries.GetUser;
+using DevFreela.Application.Services.Interfaces;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreela.API.Controllers
 {
@@ -34,7 +32,7 @@ namespace DevFreela.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(user);                       
+            return Ok(user);
         }
 
         // api/users

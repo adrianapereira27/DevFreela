@@ -2,7 +2,7 @@
 
 namespace DevFreela.Application.Commands.DeleteProject
 {
-    // usado no CQRS
+    // usado no padrão CQRS
     public class DeleteProjectCommand : IRequest<Unit>
     {
         public DeleteProjectCommand(int id)

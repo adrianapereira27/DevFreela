@@ -2,7 +2,7 @@
 
 namespace DevFreela.Application.Commands.CreateComment
 {
-    //  usado no CQRS
+    //  usado no padrão CQRS
     public class CreateCommentCommand : IRequest<Unit>  // Unit é igual void (sem retorno)
     {
         // mesmos campos do InputModel (CreateCommentInputModel)

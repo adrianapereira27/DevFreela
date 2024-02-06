@@ -38,7 +38,7 @@ namespace DevFreela.Infrastructure.Persistence.Repositories
         }
 
         public async Task StartAsync(Project project)
-        {    
+        {
             using (var sqlConnection = new SqlConnection(_connectionString))  // dapper
             {
                 sqlConnection.Open();

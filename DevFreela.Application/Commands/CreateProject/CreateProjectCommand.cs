@@ -2,7 +2,7 @@
 
 namespace DevFreela.Application.Commands.CreateProject
 {
-    // usado no CQRS
+    // usado no padrão CQRS
     public class CreateProjectCommand : IRequest<int>
     {
         // mesmos campos do InputModel (NewProjectInputModel)

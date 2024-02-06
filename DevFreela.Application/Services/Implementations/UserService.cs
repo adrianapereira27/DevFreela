@@ -1,5 +1,4 @@
 ﻿using DevFreela.Application.Services.Interfaces;
-using DevFreela.Application.ViewModels;
 using DevFreela.Infrastructure.Persistence;
 
 namespace DevFreela.Application.Services.Implementations

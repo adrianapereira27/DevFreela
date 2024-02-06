@@ -1,6 +1,5 @@
 ﻿using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
-using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
 namespace DevFreela.Application.Commands.CreateComment
@@ -16,7 +15,7 @@ namespace DevFreela.Application.Commands.CreateComment
 
         // Unit é igual ao void (sem retorno)
         public async Task<Unit> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
-        {            
+        {
             var comment = new ProjectComment(request.Content, request.IdProject, request.IdUser);
 
             await _projectRepository.AddCommentAsync(comment);

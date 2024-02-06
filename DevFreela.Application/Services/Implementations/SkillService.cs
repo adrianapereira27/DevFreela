@@ -1,8 +1,5 @@
-﻿using Dapper;
-using DevFreela.Application.Services.Interfaces;
-using DevFreela.Application.ViewModels;
+﻿using DevFreela.Application.Services.Interfaces;
 using DevFreela.Infrastructure.Persistence;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace DevFreela.Application.Services.Implementations
