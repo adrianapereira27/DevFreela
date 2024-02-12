@@ -6,7 +6,7 @@ namespace DevFreela.Application.Validators
 {
     public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
-        public CreateUserCommandValidator() 
+        public CreateUserCommandValidator()
         {
             RuleFor(p => p.Email)
                 .EmailAddress()
@@ -14,7 +14,7 @@ namespace DevFreela.Application.Validators
 
             RuleFor(p => p.Password)
                 .Must(ValidPassword)
-                .WithMessage("Senha deve conter pelo menos 8 caracteres, um número, uma letra maiúscula uma minúscula, e um caracter especial");
+                .WithMessage("Senha deve conter pelo menos 8 caracteres, um número, uma letra maiúscula, uma minúscula, e um caracter especial");
 
             RuleFor(p => p.FullName)
                 .NotEmpty()

@@ -35,20 +35,10 @@ namespace DevFreela.API.Controllers
         // api/users
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand createUserCommand)
-        {
+        {           
+            
             //var id = _userService.Create(newUserInputModel);   // usado do UserService
-
-            if (!ModelState.IsValid)
-            {
-                var messages = ModelState
-                    .SelectMany(ms => ms.Value.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                return BadRequest(messages);
-            }
-
-            var id = await _mediator.Send(createUserCommand);
+            var id = await _mediator.Send(createUserCommand);    // usado no MediatR
 
             return CreatedAtAction(nameof(GetById), new { id = id }, createUserCommand);
         }

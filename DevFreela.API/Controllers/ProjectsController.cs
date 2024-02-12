@@ -54,10 +54,7 @@ namespace DevFreela.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProjectCommand command)
         {
-            if (command.Title.Length > 50)
-            {
-                return BadRequest();
-            }
+            
             //var id = _projectService.Create(createProject);  // usado do ProjectService
             var id = await _mediator.Send(command);   // usado no MediatR
 

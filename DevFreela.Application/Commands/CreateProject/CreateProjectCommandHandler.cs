@@ -13,7 +13,6 @@ namespace DevFreela.Application.Commands.CreateProject
         {
             _projectRepository = projectRepository;
         }
-
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {            
             var project = new Project(request.Title, request.Description, request.idCliente, request.idFreelancer, request.TotalCoast);

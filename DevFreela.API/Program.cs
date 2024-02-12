@@ -1,16 +1,11 @@
-using Autofac.Core;
+using DevFreela.API;
+using DevFreela.API.Filters;
 using DevFreela.API.Models;
-using DevFreela.Application.Commands.CreateProject;
-using DevFreela.Application.Validators;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,16 +21,13 @@ var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 //builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseInMemoryDatabase(connectionString)); // cria um banco de dados em memória (com EntityFrameWorkCore), usado para situações que o banco de dados ainda não foi criado ou não foi realizada a migration
 
-
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();   // padrão repository
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();       // padrão repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();         // padrão repository
 
-builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>()
-    .AddFluentValidationAutoValidation()
-    .AddFluentValidationClientsideAdapters();     // usado no FluentValidation
+builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)));   // validationFilter
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));  // usado no padrão CQRS (MediatR)
+builder.Services.AddApplication();    // classe de configuração
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
