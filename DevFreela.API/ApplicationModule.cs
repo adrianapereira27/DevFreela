@@ -15,6 +15,7 @@ using DevFreela.Application.Queries.GetUser;
 using DevFreela.Application.Queries.GetAllSkills;
 using DevFreela.Core.DTOs;
 using DevFreela.Application.Commands.CreateComment;
+using DevFreela.Application.Commands.LoginUser;
 
 namespace DevFreela.API
 {
@@ -45,6 +46,7 @@ namespace DevFreela.API
             services.AddScoped<IRequestHandler<CreateUserCommand, int>, CreateUserCommandHandler>();
             services.AddScoped<IRequestHandler<GetUserByIdQuery, UserDetailsViewModel>, GetUserByIdQueryHandler>();
             services.AddScoped<IRequestHandler<GetAllSkillsQuery, List<SkillDTO>>, GetAllSkillsQueryHandler>();
+            services.AddScoped<IRequestHandler<LoginUserCommand, LoginUserViewModel>, LoginUserCommandHandler>();
             return services;
         }
         private static IServiceCollection AddValidator(this IServiceCollection services)

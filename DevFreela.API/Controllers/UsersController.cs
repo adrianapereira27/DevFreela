@@ -1,12 +1,14 @@
-﻿using DevFreela.API.Models;
-using DevFreela.Application.Commands.CreateUser;
+﻿using DevFreela.Application.Commands.CreateUser;
+using DevFreela.Application.Commands.LoginUser;
 using DevFreela.Application.Queries.GetUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevFreela.API.Controllers
 {
     [Route("api/users")]
+    [Authorize]    // annotation que indica que os métodos precisam de um usuário autorizado para acessar
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -21,9 +23,8 @@ namespace DevFreela.API.Controllers
         {
             var query = new GetUserByIdQuery(id);
 
-            //var user = _userService.GetById(id);   // usado do UserService
-
-            var user = await _mediator.Send(query);
+            //var user = _userService.GetById(id);    // usado do UserService
+            var user = await _mediator.Send(query);   // usado no MediatR
 
             if (user == null)
             {
@@ -34,22 +35,29 @@ namespace DevFreela.API.Controllers
 
         // api/users
         [HttpPost]
+        [AllowAnonymous]      // permite acesso anônimo (sobrescreve a annotation Authorize)
         public async Task<IActionResult> Post([FromBody] CreateUserCommand createUserCommand)
-        {           
-            
+        {
+
             //var id = _userService.Create(newUserInputModel);   // usado do UserService
             var id = await _mediator.Send(createUserCommand);    // usado no MediatR
 
             return CreatedAtAction(nameof(GetById), new { id = id }, createUserCommand);
         }
 
-        // api/users/1/login
-        [HttpPut("{id}/login")]
-        public IActionResult Login(int id, [FromBody] LoginModel login)
+        // api/users/login
+        [HttpPut("login")]
+        [AllowAnonymous]      // permite acesso anônimo (sobrescreve a annotation Authorize)
+        public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {
-            // TODO: Para módulo de autenticação e autorização
+            var loginUserViewModel = await _mediator.Send(command);
 
-            return NoContent();
+            if (loginUserViewModel == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(loginUserViewModel);
         }
     }
 }

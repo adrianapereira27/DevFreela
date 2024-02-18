@@ -8,7 +8,6 @@ namespace DevFreela.Application.Commands.CreateProject
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {
         private readonly IProjectRepository _projectRepository;
-
         public CreateProjectCommandHandler(IProjectRepository projectRepository)
         {
             _projectRepository = projectRepository;
