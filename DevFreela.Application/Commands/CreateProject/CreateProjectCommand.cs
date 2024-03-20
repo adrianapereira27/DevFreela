@@ -8,8 +8,8 @@ namespace DevFreela.Application.Commands.CreateProject
         // mesmos campos do InputModel (NewProjectInputModel)
         public string Title { get; set; }
         public string Description { get; set; }
-        public int idCliente { get; set; }
-        public int idFreelancer { get; set; }
+        public int IdCliente { get; set; }
+        public int IdFreelancer { get; set; }
         public decimal TotalCoast { get; set; }
     }
 }

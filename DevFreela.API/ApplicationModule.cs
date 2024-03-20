@@ -39,7 +39,7 @@ namespace DevFreela.API
             services.AddScoped<IRequestHandler<UpdateProjectCommand, Unit>, UpdateProjectCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteProjectCommand, Unit>, DeleteProjectCommandHandler>();
             services.AddScoped<IRequestHandler<StartProjectCommand, Unit>, StartProjectCommandHandler>();
-            services.AddScoped<IRequestHandler<FinishProjectCommand, Unit>, FinishProjectCommandHandler>();
+            services.AddScoped<IRequestHandler<FinishProjectCommand, bool>, FinishProjectCommandHandler>();
             services.AddScoped<IRequestHandler<GetAllProjectsQuery, List<ProjectViewModel>>, GetAllProjectsQueryHandler>();
             services.AddScoped<IRequestHandler<GetProjectByIdQuery, ProjectDetailsViewModel>, GetProjectByIdQueryHandler>();
             services.AddScoped<IRequestHandler<CreateCommentCommand, Unit>, CreateCommentCommandHandler>();

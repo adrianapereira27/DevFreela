@@ -4,6 +4,8 @@ using DevFreela.API.Models;
 using DevFreela.Core.Repositories;
 using DevFreela.Core.Services;
 using DevFreela.Infrastructure.Auth;
+using DevFreela.Infrastructure.MessageBus;
+using DevFreela.Infrastructure.Payments;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -26,10 +28,16 @@ var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 //builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseInMemoryDatabase(connectionString)); // cria um banco de dados em memória (com EntityFrameWorkCore), usado para situações que o banco de dados ainda não foi criado ou não foi realizada a migration
 
+builder.Services.AddHttpClient();    // para usar o http client factory
+
+
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();   // padrão repository
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();       // padrão repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();         // padrão repository
+
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IMessageBusService, MessageBusService>();
 
 builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)));   // validationFilter
 

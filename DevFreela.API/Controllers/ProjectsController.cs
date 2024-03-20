@@ -121,15 +121,20 @@ namespace DevFreela.API.Controllers
 
         // api/projects/1/finish
         [HttpPut("{id}/finish")]
-        [Authorize(Roles = "client")]   // annotation que indica que os métodos precisam de um usuário autorizado para acessar
-        public async Task<IActionResult> Finish(int id)
+       // [Authorize(Roles = "client")]   // annotation que indica que os métodos precisam de um usuário autorizado para acessar
+        public async Task<IActionResult> Finish(int id, [FromBody] FinishProjectCommand command)
         {
-            var command = new FinishProjectCommand(id);
+            command.Id = id;
 
             // _projectService.Finish(id);    // usado do ProjectService
-            await _mediator.Send(command);    // usado no MediatR
+            var result = await _mediator.Send(command);    // usado no MediatR
 
-            return NoContent();
+            if (!result)
+            {
+                return BadRequest("O pagamento não pôde ser processado.");
+            }
+
+            return Accepted();
         }
     }
 }

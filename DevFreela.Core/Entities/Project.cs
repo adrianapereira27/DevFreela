@@ -53,6 +53,11 @@ namespace DevFreela.Core.Entities
                 FinishedAt = DateTime.Now;
             }
         }
+        public void SetPaymentPending()
+        {
+            Status = ProjectStatusEnum.PaymentPending;
+            FinishedAt = null;
+        }
         public void Update(string title, string description, decimal totalCoast)
         {
             Title = title;
