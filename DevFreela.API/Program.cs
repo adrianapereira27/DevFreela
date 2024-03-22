@@ -1,6 +1,7 @@
 using DevFreela.API;
 using DevFreela.API.Filters;
 using DevFreela.API.Models;
+using DevFreela.Application.Consumers;
 using DevFreela.Core.Repositories;
 using DevFreela.Core.Services;
 using DevFreela.Infrastructure.Auth;
@@ -27,6 +28,8 @@ builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs"); // DevFreelaCs está declarado no appsettings.json
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 //builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseInMemoryDatabase(connectionString)); // cria um banco de dados em memória (com EntityFrameWorkCore), usado para situações que o banco de dados ainda não foi criado ou não foi realizada a migration
+
+builder.Services.AddHostedService<PaymentApprovedConsumer>();
 
 builder.Services.AddHttpClient();    // para usar o http client factory
 

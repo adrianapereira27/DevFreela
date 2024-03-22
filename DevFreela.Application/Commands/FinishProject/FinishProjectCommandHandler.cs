@@ -28,7 +28,7 @@ namespace DevFreela.Application.Commands.FinishProject
 
             await _projectRepository.SaveChangesAsync();
 
-            return true;   // retorno void do MediatR
+            return true;  // retorna sempre true, mesmo sem retorno do outro microsserviço, pois é chamada assincrona
         }
     }
 }

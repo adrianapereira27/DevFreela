@@ -121,7 +121,7 @@ namespace DevFreela.API.Controllers
 
         // api/projects/1/finish
         [HttpPut("{id}/finish")]
-       // [Authorize(Roles = "client")]   // annotation que indica que os métodos precisam de um usuário autorizado para acessar
+        [Authorize(Roles = "client")]   // annotation que indica que os métodos precisam de um usuário autorizado para acessar
         public async Task<IActionResult> Finish(int id, [FromBody] FinishProjectCommand command)
         {
             command.Id = id;
