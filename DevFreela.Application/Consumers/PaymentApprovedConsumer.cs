@@ -11,7 +11,7 @@ namespace DevFreela.Application.Consumers
 {
     public class PaymentApprovedConsumer : BackgroundService
     {
-        private const string PAYMENT_APPROVED_QUEUE = "PaymentAproved";
+        private const string PAYMENT_APPROVED_QUEUE = "PaymentApproved";
         private readonly IConnection _connection;
         private readonly IModel _channel;
         private readonly IServiceProvider _serviceProvider;
